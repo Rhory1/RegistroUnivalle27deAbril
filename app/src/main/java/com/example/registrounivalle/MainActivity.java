@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -18,15 +19,44 @@ public class MainActivity extends AppCompatActivity {
         private Switch swEstudiante;
         private EditText etCodigo;
         private Button btnRegistra;
-        private String mensaje;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         inicilizarVistas();
+        //Visibilidad del elemento o view en pantalla y espera un valor ese valor ya lo tienen
+        // preparado en constantes en las librerias
+        etCodigo.setVisibility(View.INVISIBLE);
+        //Para un switch o checbox pueden configurar un listener para que este pendiente a los cambios
+        //en este componente cambio = marcado o no marcado
+        swEstudiante.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                habilitarCampoEstudiante(b);
+                mostrarMensaje(b);
+            }
+        });
         btnRegistra.setOnClickListener(view -> validar());
     }
+
+    private void habilitarCampoEstudiante(boolean marcado) {
+        if (marcado ){
+            etCodigo.setVisibility(View.VISIBLE);
+        }else{
+            etCodigo.setVisibility(View.GONE);
+        }
+
+    }
+
+    private void mostrarMensaje(boolean marcado) {
+        String mensaje = "no estoy marcado";
+        if(marcado){
+            mensaje = "Estoy marcado";
+        }
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show();
+    }
+
     private void inicilizarVistas() {
         etNombre = findViewById(R.id.etNombre);
         etApellido = findViewById(R.id.etApellido);
@@ -45,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
         if (nombre.length()==0 || apellido.length()==0)
         {
-            Toast.makeText(this, "Faltan llegar datos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Falta llenar datos", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(this, "Nombre completo: "+nombre+apellido+" Email: "+email+" Celular: "+celular+" Codigo: "+codigo, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Nombre completo: "+nombre+" "+apellido+" Email: "+email+" Celular: "+celular+" Codigo: "+codigo, Toast.LENGTH_SHORT).show();
         }
     }
 }
