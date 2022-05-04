@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="@+id/etNombre" />
 
     <Button
-        android:id="@+id/btnRegistra"
+        android:id="@+id/btnRegistrar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
@@ -91,8 +91,8 @@
         android:hint="Codigo estudiante"
         android:inputType="number"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnRegistra"
-        app:layout_constraintEnd_toEndOf="@+id/btnRegistra"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegistrar"
+        app:layout_constraintEnd_toEndOf="@+id/btnRegistrar"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/btnRegistra" />
+        app:layout_constraintStart_toStartOf="@+id/btnRegistrar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
