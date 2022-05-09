@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         private EditText etCodigo;
         private Button btnRegistrar;
 
+        private Estudiante estudiante;
+
     String nombre;
     String apellido;
     String email;
@@ -40,11 +42,35 @@ public class MainActivity extends AppCompatActivity {
         });
         btnRegistrar.setOnClickListener(view -> {
             //validar();
+            obtenerInformacionEnObjeto();
             pasarSegundaPantalla();
+            pasarPantallaEnviandoObjeto();
         });
 
     }
 
+    private void pasarPantallaEnviandoObjeto() {
+        Intent i = new Intent(this,HomeActivity.class);
+        //Crear un archivo temporal -> de tipo Bundle
+        Bundle archivo = new Bundle();
+        archivo.putSerializable("estudiante_objeto",estudiante);
+        archivo.putString("nombre",nombre);// lo mismo que arriba, aveces se usa en internet
+        i.putExtras(archivo); //Pasando de golpe todo un archivo con registros
+        startActivity(i);
+    }
+
+    private void obtenerInformacionEnObjeto(){
+        estudiante = new Estudiante(
+                etNombre.getText().toString(),
+                etApellido.getText().toString(),
+                etEmail.getText().toString(),
+                Integer.parseInt(etCelular.getText().toString())
+
+        );
+        if (swEstudiante.isChecked()){
+            estudiante.setCodigo(Integer.parseInt(etCodigo.getText().toString()));
+        }
+    }
     private void pasarSegundaPantalla() {
         /*
         Para pasar o navegar entre pantallas van a utilizar el componente llamado INTENT
