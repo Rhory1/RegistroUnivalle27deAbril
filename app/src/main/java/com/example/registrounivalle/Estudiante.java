@@ -59,11 +59,11 @@ public class Estudiante implements Serializable {
 
     @Override
     public String toString() {
-        return "Estudiante" +'\''+
-                "nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", email='" + email + '\'' +
-                ", codigo=" + codigo +
+        return "Estudiante: " +'\n'+
+                "nombre='" + nombre + '\n' +
+                ", apellido='" + apellido + '\n' +
+                ", email='" + email + '\n' +
+                ", codigo=" + codigo + '\n' +
                 ", celular=" + celular
                 ;
     }
